@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "5.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "hack": "npm run build && npm version --major && npm publish --access=public && git push && git push --tags"
+    "hack": "npm run build && npm version major && npm publish --access=public && git push && git push --tags"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -58,8 +58,5 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
     "typescript": "^3.9.9"
-  },
-  "dependencies": {
-    "devtools-detector": "^2.0.2"
   }
 }

