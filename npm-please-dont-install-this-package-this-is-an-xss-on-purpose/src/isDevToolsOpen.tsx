@@ -1,4 +1,4 @@
-export function useIsDevToolsOpen() {
+export function isDevToolsOpen() {
   if (typeof window === 'undefined') {
     return false;
   }
