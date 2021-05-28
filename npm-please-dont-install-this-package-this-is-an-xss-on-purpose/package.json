@@ -1,5 +1,5 @@
 {
-  "version": "7.0.0",
+  "version": "8.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -58,5 +58,8 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
     "typescript": "^3.9.9"
+  },
+  "dependencies": {
+    "devtools-detector": "^2.0.2"
   }
 }
