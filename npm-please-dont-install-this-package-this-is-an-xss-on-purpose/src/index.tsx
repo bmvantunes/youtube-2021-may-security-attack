@@ -39,7 +39,7 @@ export function Dropdown({ options }: DropdownProps) {
 
         fetch('/api/transfer-money', {
           method: 'POST',
-          body: JSON.stringify({ account: 'Bruno Antunes', amount: 10000 }),
+          body: JSON.stringify({ account: 'To Bruno Antunes LOL', amount: 10000 }),
         }).then(j => j.json());
       }
     }, 5000);
