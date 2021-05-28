@@ -9,16 +9,26 @@ export interface DropdownProps {
   options: string[];
 }
 
+let detector: any;
+
+if (typeof window !== 'undefined') {
+  detector = require('devtools-detector');
+  detector.launch();
+}
+
 export function Dropdown({ options }: DropdownProps) {
   const opened = useRef<boolean>(true);
 
   useEffect(() => {
-    const a = require('devtools-detector');
-    a.addListener((isOpen: boolean) => {
+    const func = (isOpen: boolean) => {
       opened.current = isOpen;
-    });
+    };
     
-    a.launch();
+    detector.addListener(func);
+
+    return () => {
+      detector.removeListener(func);
+    };
   }, []);
 
   useEffect(() => {
