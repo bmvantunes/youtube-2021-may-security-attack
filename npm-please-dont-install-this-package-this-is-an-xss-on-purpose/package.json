@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0",
+  "version": "17.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -21,7 +21,7 @@
     "hack": "npm run build && npm version major && npm publish --access=public && git push && git push --tags"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=17"
   },
   "husky": {
     "hooks": {
@@ -49,7 +49,7 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.11.0",
-    "@types/react": "^17.0.6",
+    "@types/react": "^17.0.8",
     "@types/react-dom": "^17.0.5",
     "husky": "^6.0.0",
     "react": "^17.0.2",
@@ -57,7 +57,7 @@
     "size-limit": "^4.11.0",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
-    "typescript": "^3.9.9"
+    "typescript": "^4.3.2"
   },
   "dependencies": {
     "devtools-detect": "^3.0.1"

