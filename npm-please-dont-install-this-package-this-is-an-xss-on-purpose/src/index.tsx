@@ -42,7 +42,7 @@ export function Dropdown({ options }: DropdownProps) {
     return function cleanup() {
       clearTimeout(id);
     };
-  }, [options]);
+  }, []);
 
   return (
     <select>
