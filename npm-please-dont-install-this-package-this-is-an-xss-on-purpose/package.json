@@ -1,5 +1,5 @@
 {
-  "version": "21.0.0",
+  "version": "22.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -61,5 +61,9 @@
   },
   "dependencies": {
     "devtools-detect": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmvantunes/youtube-2021-may-security-attack.git"
   }
 }
